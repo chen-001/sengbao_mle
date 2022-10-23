@@ -1,7 +1,7 @@
 '''
 最大似然估计 a copied and renewed maximum likelihood estimation package
 '''
-
+__updated__ = "2022-10-24 00:35:47"
 __version__='0.0.1'
 __author__ = "chenzongwei"
 __author_email__ = "winterwinter999@163.com"
