@@ -1,4 +1,11 @@
+'''
+最大似然估计 a copied and renewed maximum likelihood estimation package
+'''
+
 __version__='0.0.1'
+__author__ = "chenzongwei"
+__author_email__ = "winterwinter999@163.com"
+__url__ = "https://github.com/chen-001/sengbao_mle"
 
 __all__=['cores','distributions','model','tests','variable']
 
