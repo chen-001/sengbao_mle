@@ -1,4 +1,4 @@
-__updated__ = "2022-10-22 10:14:49"
+__updated__ = "2022-10-24 00:33:39"
 
 from setuptools import setup
 import setuptools
@@ -23,7 +23,7 @@ setup(
     long_description_content_type="text/markdown",
     author="chenzongwei",
     author_email="winterwinter999@163.com",
-    # url="https://github.com/chen-001/pure_ocean_breeze.git",
+    url="https://github.com/chen-001/sengbao_mle.git",
     # project_urls={"Documentation": "https://chen-001.github.io/pure_ocean_breeze/"},
     install_requires=["numpy", "scipy", "theano", "iminuit"],
     python_requires=">=3",
