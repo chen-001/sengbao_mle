@@ -1,3 +1,3 @@
-__all__=['variable']
+__all__ = ["variable"]
 
 from sengbao_mle.variable.variable import *

@@ -1,7 +1,7 @@
 from scipy import stats
 import numpy as np
 
-__all__ = ['chisquare', 'kolsmi']
+__all__ = ["chisquare", "kolsmi"]
 
 
 def kolsmi(dist, fit_result, data):
@@ -22,7 +22,9 @@ def kolsmi(dist, fit_result, data):
     if len(variables) > 1:
         raise ValueError("Kolmogorov-Smirnov-Test is only valid for 1d distributions")
     var = variables[0]
-    teststat, pvalue = stats.kstest(data[var.name], lambda x: dist.cdf(x, **fit_result["x"]))
+    teststat, pvalue = stats.kstest(
+        data[var.name], lambda x: dist.cdf(x, **fit_result["x"])
+    )
     return teststat, pvalue
 
 
@@ -50,17 +52,19 @@ def chisquare(dist, fit_result, data, bins=None, range=None):
 
     # rule of thumb for number if bins if not provided
     if bins is None:
-        bins = np.ceil(2*len(data[var.name])**(1.0/3.0))
+        bins = np.ceil(2 * len(data[var.name]) ** (1.0 / 3.0))
 
     entries, edges = np.histogram(data[var.name], bins=bins, range=range)
 
     # get expected frequencies from the cdf
     cdf = dist.cdf(edges, **fit_result["x"])
-    exp_entries = np.round(len(data[var.name]) * (cdf[1:]-cdf[:-1]))
+    exp_entries = np.round(len(data[var.name]) * (cdf[1:] - cdf[:-1]))
 
     # use only bins where more then 4 entries are expected
     mask = exp_entries >= 5
 
-    chisq, pvalue = stats.chisquare(entries[mask], exp_entries[mask], ddof=len(fit_result["x"]))
-    chisq = chisq/(np.sum(mask) - len(fit_result["x"]) - 1)
+    chisq, pvalue = stats.chisquare(
+        entries[mask], exp_entries[mask], ddof=len(fit_result["x"])
+    )
+    chisq = chisq / (np.sum(mask) - len(fit_result["x"]) - 1)
     return chisq, pvalue

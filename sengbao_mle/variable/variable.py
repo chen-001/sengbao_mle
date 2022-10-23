@@ -1,15 +1,17 @@
 import theano.tensor as T
 import numpy as np
 
-__all__ = ['var']
+__all__ = ["var"]
 
 
-def var(name, label=None, observed=False, const=False, vector=False, lower=None, upper=None):
+def var(
+    name, label=None, observed=False, const=False, vector=False, lower=None, upper=None
+):
     if vector and not observed:
-        raise ValueError('Currently, only observed variables can be vectors')
+        raise ValueError("Currently, only observed variables can be vectors")
 
     if observed and const:
-        raise ValueError('Observed variables are automatically const')
+        raise ValueError("Observed variables are automatically const")
 
     if vector:
         var = T.vector(name)

@@ -1,3 +1,3 @@
-__all__=['model']
+__all__ = ["model"]
 
 from sengbao_mle.model.model import *

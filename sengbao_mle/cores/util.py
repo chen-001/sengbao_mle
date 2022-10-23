@@ -5,7 +5,7 @@ from theano.tensor import arange, grad, stack
 from theano.gradient import format_as
 
 
-def hessian_(cost, wrt, consider_constant=None, disconnected_inputs='raise'):
+def hessian_(cost, wrt, consider_constant=None, disconnected_inputs="raise"):
     """
 
     :type cost: Scalar (0-dimensional) Variable.
@@ -38,19 +38,27 @@ def hessian_(cost, wrt, consider_constant=None, disconnected_inputs='raise'):
     else:
         wrt = [wrt]
 
-    expr = grad(cost, wrt, consider_constant=consider_constant,
-                disconnected_inputs=disconnected_inputs)
+    expr = grad(
+        cost,
+        wrt,
+        consider_constant=consider_constant,
+        disconnected_inputs=disconnected_inputs,
+    )
 
     # It is possible that the inputs are disconnected from expr,
     # even if they are connected to cost.
     # This should not be an error.
     hess, updates = scan(
-        lambda i, y: grad(y[i], wrt, consider_constant=consider_constant,
-                          disconnected_inputs='ignore'),
-        sequences=arange(len(expr)), non_sequences=[expr]
+        lambda i, y: grad(
+            y[i], wrt, consider_constant=consider_constant, disconnected_inputs="ignore"
+        ),
+        sequences=arange(len(expr)),
+        non_sequences=[expr],
     )
-    assert not updates, ("Scan has returned a list of updates. This should not happen! Report "
-                         "this to theano-users (also include the script that generated the error)")
+    assert not updates, (
+        "Scan has returned a list of updates. This should not happen! Report "
+        "this to theano-users (also include the script that generated the error)"
+    )
 
     return format_as(using_list, using_tuple, stack(hess)[0])
 
@@ -67,6 +75,7 @@ def memoize(obj):
             cache[key] = obj(*args, **kwargs)
 
         return cache[key]
+
     return memoizer
 
 
