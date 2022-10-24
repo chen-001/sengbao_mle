@@ -122,3 +122,4 @@
 
 #### 相关链接🔗
 * [pypi](https://pypi.org/project/sengbao-mle/)
+* [更新日志](https://github.com/chen-001/sengbao_mle/blob/master/更新日志/更新日志.md)
